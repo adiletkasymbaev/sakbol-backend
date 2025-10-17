@@ -19,13 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 AUTH_USER_MODEL = 'sos_module.User'
 
 # CORS
-# CORS
-CORS_ALLOW_ALL_ORIGINS = False
+# CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "https://sakbol.app",
+    "https://api.sakbol.app",
+    "https://213.139.209.169",
 ]
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -88,7 +88,9 @@ SECRET_KEY = 'django-insecure-tnj!g^0z@6c6qrf(3*d1-jjpbd4@9vg7ia7mlam5az@$+7k1(6
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "127.0.0.1"
+    "sakbol.app",
+    "api.sakbol.app",
+    "213.139.209.169",
 ]
 
 
