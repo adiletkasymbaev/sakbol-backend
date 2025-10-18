@@ -10,11 +10,12 @@ class User(AbstractUser):
         ('admin', 'admin'),
     ]
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user', verbose_name='Роль')
-    phone_number = models.CharField(max_length=20, unique=True, verbose_name='Номер телефона')
+    phone_number = models.CharField(max_length=20, unique=True, verbose_name='Номер телефона', null=True, blank=True)
     is_online = models.BooleanField(default=False, verbose_name='Онлайн статус')
     last_seen = models.DateTimeField(null=True, blank=True, verbose_name='Последний раз в сети')
     identifier = models.CharField(max_length=6, unique=True, blank=True, null=True, verbose_name='Идентификатор')
     email = models.EmailField(unique=True)
+    username = models.CharField(max_length=150, unique=False, blank=True, null=True)
     avatar = models.ImageField(null=True, blank=True, upload_to="avatars/", verbose_name='Миниатюра')
     
     USERNAME_FIELD = "email"

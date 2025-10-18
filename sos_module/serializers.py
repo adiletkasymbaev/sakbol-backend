@@ -192,3 +192,25 @@ class SosSignalSerializer(serializers.ModelSerializer):
         sos = SosSignal.objects.create(sender=user, **validated_data)
         # Здесь можно триггерить задачу Celery для уведомлений
         return sos
+    
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+    password2 = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'email', 'last_name', 'password', 'password2', 'role')
+        extra_kwargs = {'role': {'default': 'user'}}
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Пароли не совпадают"})
+        return attrs
+
+    def create(self, validated_data):
+        validated_data.pop('password2')
+        password = validated_data.pop('password')
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user

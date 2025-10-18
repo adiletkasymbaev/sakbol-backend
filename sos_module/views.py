@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from .models import Contact, Keyword, Location, FavoriteContact, SosSignal
 from .serializers import (
     KeywordSerializer,
+    RegisterSerializer,
     UserSerializer,
     ContactSerializer,
     CreateContactSerializer,
@@ -20,6 +21,11 @@ from .serializers import (
 )
 
 User = get_user_model()
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+    permission_classes = [permissions.AllowAny]
 
 class MeView(generics.RetrieveAPIView):
     """

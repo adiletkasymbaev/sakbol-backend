@@ -8,6 +8,7 @@ from .views import (
     LocationView,
     FavoriteContactViewSet,
     OutgoingRequestsView,
+    RegisterView,
     SosSignalViewSet,
     UpdateLocationView,
     UpdateOnlineStatusView,
@@ -28,6 +29,7 @@ urlpatterns = [
     path("auth/update-status/", UpdateOnlineStatusView.as_view(), name="update-status"),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # login
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), # refresh
+    path('register/', RegisterView.as_view(), name='register'),
 
     # Contacts requests
     path("contacts/outgoing-requests/", OutgoingRequestsView.as_view(), name="outgoing-requests"),

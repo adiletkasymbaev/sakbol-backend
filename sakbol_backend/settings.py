@@ -19,13 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 AUTH_USER_MODEL = 'sos_module.User'
 
 # CORS
-# CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOWED_ORIGINS = [
+#     "https://sakbol.app",
+#     "https://api.sakbol.app",
+#     "https://213.139.209.169",
+# ]
 CORS_ALLOWED_ORIGINS = [
-    "https://sakbol.app",
-    "https://api.sakbol.app",
-    "https://213.139.209.169",
+    "https://localhost:5173",
 ]
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = False
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -48,10 +51,10 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = False
+# SESSION_COOKIE_SAMESITE = 'None'
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SAMESITE = 'None'
+# CSRF_COOKIE_SECURE = False
 
 # Настройки REST Framework
 REST_FRAMEWORK = {
@@ -70,7 +73,7 @@ REST_FRAMEWORK = {
 
 # Настройки JWT
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(weeks=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(weeks=30),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -87,10 +90,15 @@ SECRET_KEY = 'django-insecure-tnj!g^0z@6c6qrf(3*d1-jjpbd4@9vg7ia7mlam5az@$+7k1(6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = [
+#     "sakbol.app",
+#     "api.sakbol.app",
+#     "213.139.209.169",
+# ]
+
 ALLOWED_HOSTS = [
-    "sakbol.app",
-    "api.sakbol.app",
-    "213.139.209.169",
+    "127.0.0.1",
+    "localhost"
 ]
 
 
@@ -188,10 +196,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static'
-# ]
-STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+# STATIC_ROOT = BASE_DIR / 'static'
 
 # Media files
 
